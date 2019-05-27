@@ -17,7 +17,7 @@ double solveForX(const double [] matrix_row,const double [] solutions, const int
 	double sum = matrix_row[matrix_row.length-1];
 	int j = 0;
 	for(int i = cast(int)matrix_row.length - 2; i > end; i--) {
-			sum -= matrix_row[i] * solutions[j++];
+		sum -= matrix_row[i] * solutions[j++];
 	}
 	return sum/matrix_row[end];
 }
@@ -26,15 +26,15 @@ double solveForX(const double [] matrix_row,const double [] solutions, const int
 double [] getSolutions(const double [][] matrix) {
 	double [] solutions;
 	for(int i = cast(int) matrix.length-1; i >= 0; i--) {
-			solutions ~= solveForX(matrix[i],solutions,i);
+		solutions ~= solveForX(matrix[i],solutions,i);
 	}
 	return solutions;
 }
 
 //subtracts row above start_row row from all rows below it.  
-double [][] subLinesTogether(double [][] matrix,const int start_column, const int start_row) {
+double [][] subLinesTogether(double [][] matrix,const int start_row) {
 	for(int i = start_row; i < matrix.length; i++){
-		matrix[i][start_column .. matrix[i].length] -= matrix[start_row - 1][start_column .. matrix[i].length];
+		matrix[i][] -= matrix[start_row - 1][];
 	}
 	return matrix;
 }
@@ -99,7 +99,7 @@ void main() {
 	if(checkMatrixSize(matrix) == 1 ) {	
 		for (int i = 0; i < matrix[0].length-2; i++) {
 			matrix = divideThrough(matrix,i,i);	
-			matrix = subLinesTogether(matrix,i,i+1);
+			matrix = subLinesTogether(matrix,i+1);
 		}
 		solutions = getSolutions(matrix); 
 		reverse(solutions);
